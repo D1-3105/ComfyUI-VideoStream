@@ -9,17 +9,10 @@ all: install test
 
 # Install system dependencies
 
-erase-opencv-build:
-	cd $CWD
-	rm -rf gocv
-
 install-opencv:
-	rm -rf gocv
-	git clone https://github.com/hybridgroup/gocv.git
-	cd gocv && git checkout -b v0.38.0 && make install
 	pkg-config --modversion opencv4
 
-install-system-deps: install-opencv erase-opencv-build
+install-system-deps: install-opencv
 
 
 # Install Python dependencies
