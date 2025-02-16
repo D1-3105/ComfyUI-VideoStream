@@ -3,15 +3,23 @@ PYTHON := python
 PIP := $(PYTHON) -m pip
 GO := go
 FLOWWEAVER_DIR := tests/FloWWeaver
-
+CWD = $(pwd)
 # Default target
 all: install test
 
 # Install system dependencies
 
+erase-opencv-build:
+	cd $CWD
+	rm -rf gocv
+
 install-opencv:
-	sudo apt update
-	sudo apt-get install python3-opencv
+	git clone https://github.com/hybridgroup/gocv.git
+	cd gocv
+	git checkout v0.38.0
+	make -j$(nproc)
+	make sudo_install
+
 
 install-system-deps: install-opencv
 
