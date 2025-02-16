@@ -1,6 +1,7 @@
 import gzip
 import logging
 import os
+import time
 
 import grpc
 import torch
@@ -20,7 +21,7 @@ class ExportSingleFrameGRPC:
 
     @classmethod
     def IS_CHANGED(cls, *args, **kwargs):
-        return True
+        return time.perf_counter()
 
     def __init__(self):
         self.streams = dict()
