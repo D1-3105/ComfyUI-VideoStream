@@ -10,6 +10,16 @@ all: install test
 # Install system dependencies
 install-system-deps:
 	$(PIP) install opencv-python
+	sudo apt-get update
+	sudo apt-get install -y \
+			pkg-config \
+			libopencv-dev \
+			libopencv-contrib-dev \
+			libopencv-core-dev \
+			libopencv-highgui-dev \
+			build-essential \
+			cmake
+
 
 # Install Python dependencies
 install-python-deps:
