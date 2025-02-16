@@ -11,6 +11,7 @@ all: install test
 
 install-opencv:
 	pkg-config --modversion opencv4
+	apt install git
 
 install-system-deps: install-opencv
 
