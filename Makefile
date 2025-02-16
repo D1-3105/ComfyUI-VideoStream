@@ -1,5 +1,3 @@
-# Makefile
-
 # Variables
 PYTHON := python
 PIP := $(PYTHON) -m pip
@@ -11,16 +9,7 @@ all: install test
 
 # Install system dependencies
 install-system-deps:
-	sudo add-apt-repository ppa:opencv/opencv-4.11 -y
-	sudo apt-get update
-	sudo apt-get install -y \
-		pkg-config \
-		libopencv-dev \
-		libopencv-contrib-dev \
-		libopencv-core-dev \
-		libopencv-highgui-dev \
-		build-essential \
-		cmake
+	$(PIP) install opencv-python
 
 # Install Python dependencies
 install-python-deps:
@@ -48,4 +37,4 @@ clean:
 	rm -rf $(FLOWWEAVER_DIR)/FloWWeaver.exe
 	$(GO) clean -modcache
 
-.PHONY: all install install-system-deps install-python-deps install_comfyui_node lint build-flowweaver test clean
+.PHONY: all install install-system-deps install-python-deps install_comfyui_node lint test clean
