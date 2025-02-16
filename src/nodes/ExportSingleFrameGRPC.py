@@ -18,6 +18,10 @@ class ExportSingleFrameGRPC:
     OUTPUT_NODE = True
     RETURN_TYPES = ()
 
+    @classmethod
+    def IS_CHANGED(cls, *args, **kwargs):
+        return True
+
     def __init__(self):
         self.streams = dict()
         channel = grpc.insecure_channel(os.getenv("FLOWWEAVER_SERVER_ADDRESS", "localhost:50051"))
