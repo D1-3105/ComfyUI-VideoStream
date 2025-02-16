@@ -14,10 +14,9 @@ erase-opencv-build:
 	rm -rf gocv
 
 install-opencv:
+	rm -rf gocv
 	git clone https://github.com/hybridgroup/gocv.git
-	cd gocv
-	git checkout -b v0.38.0
-	make install
+	cd gocv && git checkout -b v0.38.0 && make install
 	pkg-config --modversion opencv4
 
 install-system-deps: install-opencv erase-opencv-build
