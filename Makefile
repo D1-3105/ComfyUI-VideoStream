@@ -12,7 +12,7 @@ all: install test
 install-opencv:
 	sudo apt update
 	sudo apt install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-	sudo apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev
+	sudo apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
 	sudo apt install -y libopenexr-dev libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
 	git clone https://github.com/opencv/opencv.git
 	git clone https://github.com/opencv/opencv_contrib.git
