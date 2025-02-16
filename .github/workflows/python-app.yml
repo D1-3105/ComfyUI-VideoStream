@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-        image: m1l0/opencv:4.9.0-python3.10.13-ubuntu22.04
+        image: m1l0/opencv:4.9.0-python3.10.16-ubuntu22.04
     steps:
     - uses: actions/checkout@v4
 
