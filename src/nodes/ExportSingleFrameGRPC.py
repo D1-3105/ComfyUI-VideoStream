@@ -96,3 +96,4 @@ class ExportSingleFrameGRPC:
             logger.critical(f"Stream {stream_id} removed: {resp.status=} {resp.message=}")
             if resp.status == 200:
                 del self.streams[stream_id]
+        return ()
