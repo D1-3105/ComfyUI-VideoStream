@@ -17,9 +17,8 @@ install-opencv:
 	git clone https://github.com/hybridgroup/gocv.git
 	cd gocv
 	git checkout -b v0.38.0
-	make -j$(nproc)
 	make sudo_install
-
+	pkg-config --modversion opencv4
 
 install-system-deps: install-opencv erase-opencv-build
 
