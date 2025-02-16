@@ -16,7 +16,7 @@ erase-opencv-build:
 install-opencv:
 	git clone https://github.com/hybridgroup/gocv.git
 	cd gocv
-	git checkout v0.38.0
+	git checkout -b v0.38.0
 	make -j$(nproc)
 	make sudo_install
 
