@@ -1,7 +1,8 @@
 import pathlib
 import sys
 
-sys.path.append(str(pathlib.Path(__file__).parent / "src"))
+sys.path.append(str(pathlib.Path(__file__).parent))
+print(sys.path)
 
 try:
     from src.nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
