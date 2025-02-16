@@ -1,0 +1,9 @@
+grpcio
+grpcio-tools
+packaging
+pluggy
+protobuf
+requests
+torch
+numpy
+pillow
