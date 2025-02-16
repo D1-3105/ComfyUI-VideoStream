@@ -15,6 +15,8 @@ logger = logging.getLogger("FloWWeaver-exporter")
 class ExportSingleFrameGRPC:
     FUNCTION = "export_single_frame"
     CATEGORY = "image/export_video_stream"
+    OUTPUT_NODE = True
+    RETURN_TYPES = ()
 
     def __init__(self):
         self.streams = dict()
