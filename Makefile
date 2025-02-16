@@ -11,6 +11,7 @@ all: install test
 install-system-deps:
 	$(PIP) install opencv-python
 	sudo apt-get update
+	sudo add-apt-repository ppa:opencv/opencv-4.8 -y
 	sudo apt-get install -y \
 			pkg-config \
 			libopencv-dev \
