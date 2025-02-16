@@ -35,7 +35,7 @@ jobs:
       run: make lint
 
     - name: Install ComfyUI node
-      run: make install-comfyui
+      run: make install_comfyui_node
 
     - name: Run tests
       run: make test
