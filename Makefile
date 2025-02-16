@@ -19,6 +19,7 @@ install-system-deps:
 			libopencv-highgui-dev \
 			build-essential \
 			cmake
+	pkg-config --modversion opencv4
 
 
 # Install Python dependencies
