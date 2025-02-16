@@ -34,7 +34,7 @@ class ExportSingleFrameGRPC:
             },
         }
 
-    def export_single_stream(self, frame: torch.Tensor, stream_id, fps, end_stream: bool):
+    def export_single_frame(self, frame: torch.Tensor, stream_id, fps, end_stream: bool):
         # If the stream doesn't exist, create it
         if stream_id not in self.streams:
             new_stream = VideoRCV_pb2.NewStream(

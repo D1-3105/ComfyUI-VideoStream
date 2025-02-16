@@ -24,4 +24,4 @@ def img_tensor():
 
 def test_stream_single_input(img_tensor, launch_FloWWeaver_grpc):
     node = ExportSingleFrameGRPC()
-    node.export_single_stream(frame=img_tensor, stream_id="1", fps=60, end_stream=True)
+    node.export_single_frame(frame=img_tensor, stream_id="1", fps=60, end_stream=True)
