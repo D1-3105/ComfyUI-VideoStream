@@ -10,7 +10,7 @@ all: install test
 # Install system dependencies
 
 install-system-deps:
-	sudo apt update
+	apt update
 	apt install git
 	pkg-config --modversion opencv4
 
