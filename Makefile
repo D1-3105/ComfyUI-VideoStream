@@ -11,7 +11,7 @@ all: install test
 
 install-system-deps:
 	apt update
-	apt install git
+	apt install git -y
 	pkg-config --modversion opencv4
 
 
