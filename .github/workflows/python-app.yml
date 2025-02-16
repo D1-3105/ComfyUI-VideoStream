@@ -18,12 +18,14 @@ jobs:
       uses: UrielCh/opencv-cache-action@V1
       with:
         branch: '4.11.0'
+
     - name: Add OpenCV to system paths
+      shell: bash
       run: |
         echo "$GITHUB_WORKSPACE/build/lib" >> $GITHUB_PATH
         echo "$GITHUB_WORKSPACE/build/bin" >> $GITHUB_PATH
-        echo "export LD_LIBRARY_PATH=$GITHUB_WORKSPACE/build/lib:$LD_LIBRARY_PATH" >> $BASH_ENV
-        echo "export PKG_CONFIG_PATH=$GITHUB_WORKSPACE/build/lib/pkgconfig:$PKG_CONFIG_PATH" >> $BASH_ENV
+        echo "LD_LIBRARY_PATH=$GITHUB_WORKSPACE/build/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+        echo "PKG_CONFIG_PATH=$GITHUB_WORKSPACE/build/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
