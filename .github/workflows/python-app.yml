@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-        image: alpine/opencv
+        image: demisto/opencv
     steps:
     - uses: actions/checkout@v4
 
