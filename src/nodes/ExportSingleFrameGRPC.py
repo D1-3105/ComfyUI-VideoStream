@@ -61,16 +61,27 @@ class ExportSingleFrameGRPC:
         # Get the stream parameters
         stream_params: VideoRCV_pb2.NewStream = self.streams[stream_id]
 
-        frame_resized = F.interpolate(frame.unsqueeze(0), size=(stream_params.height, stream_params.width),
-                                      mode='bilinear', align_corners=False).squeeze(0)
+        # Reshape frame to (N, C, H, W) for interpolation
+        frame_reshaped = frame.unsqueeze(0).permute(0, 3, 1, 2)  # (1, C, H, W)
 
-        # Prepare the NamedFrame with the resized frame
+        # Resize using interpolate
+        frame_resized = F.interpolate(
+            frame_reshaped,
+            size=(stream_params.height, stream_params.width),
+            mode='bilinear',
+            align_corners=False
+        )
+
+        # Convert back to (H, W, C) format
+        frame_resized = frame_resized.squeeze(0).permute(1, 2, 0)  # (H, W, C)
+
+        # Prepare NamedFrame with corrected dimensions
         nf = VideoRCV_pb2.NamedFrame(
             stream=stream_id,
             shard=InputStreamShard_pb2.StreamShard(
-                image_data=gzip.compress(frame_resized.numpy().tobytes()),  # Convert frame to byte data
-                width=frame_resized.shape[1],
-                height=frame_resized.shape[2],
+                image_data=gzip.compress(frame_resized.numpy().tobytes()),
+                width=frame_resized.shape[1],  # Use width from dimension 1
+                height=frame_resized.shape[0],  # Use height from dimension 0
                 fps=stream_params.fps,
                 gzipped=True
             )
