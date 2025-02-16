@@ -30,7 +30,7 @@ class ExportSingleFrameGRPC:
                 "frame": ("IMAGE",),
                 "stream_id": ("STRING",),
                 "fps": ("FLOAT",),
-                "end_stream": ("BOOL",)
+                "end_stream": ("BOOLEAN",)
             },
         }
 
