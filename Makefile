@@ -21,7 +21,7 @@ install-opencv:
 	make sudo_install
 
 
-install-system-deps: install-opencv
+install-system-deps: install-opencv erase-opencv-build
 
 
 # Install Python dependencies
