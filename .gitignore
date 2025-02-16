@@ -17,6 +17,7 @@ src/protos/*
 
 # testing
 tests/FloWWeaver
+gocv/
 
 # Ignore logs and temporary files
 logs/
