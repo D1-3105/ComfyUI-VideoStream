@@ -9,37 +9,11 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    container:
+      image: opencv/opencv:latest
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: opencv-cache
-      uses: UrielCh/opencv-cache-action@V1
-      with:
-        branch: '4.11.0'
-
-    - name: Find OpenCV installation
-      id: find_opencv
-      shell: bash
-      run: |
-        # Ищем путь к opencv4.pc
-        OPENCV_PC_PATH=$(find / -name "opencv4.pc" 2>/dev/null | head -n 1)
-        if [ -z "$OPENCV_PC_PATH" ]; then
-          echo "::error::opencv4.pc not found!"
-          exit 1
-        fi
-        OPENCV_LIB_PATH=$(dirname $(dirname "$OPENCV_PC_PATH"))/lib
-        echo "OPENCV_PC_PATH=$OPENCV_PC_PATH" >> $GITHUB_OUTPUT
-        echo "OPENCV_LIB_PATH=$OPENCV_LIB_PATH" >> $GITHUB_OUTPUT
-        echo "Found OpenCV at: $OPENCV_PC_PATH"
-
-    - name: Add OpenCV to system paths
-      shell: bash
-      run: |
-        echo "${{ steps.find_opencv.outputs.OPENCV_LIB_PATH }}" >> $GITHUB_PATH
-        echo "LD_LIBRARY_PATH=${{ steps.find_opencv.outputs.OPENCV_LIB_PATH }}:$LD_LIBRARY_PATH" >> $GITHUB_ENV
-        echo "PKG_CONFIG_PATH=$(dirname "${{ steps.find_opencv.outputs.OPENCV_PC_PATH }}"):$PKG_CONFIG_PATH" >> $GITHUB_ENV
 
     - name: Verify OpenCV installation
       run: |
