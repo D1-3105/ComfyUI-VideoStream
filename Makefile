@@ -11,24 +11,7 @@ all: install test
 
 install-opencv:
 	sudo apt update
-	sudo apt install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-	sudo apt install -y libtbb-dev libjpeg-dev libpng-dev libtiff-dev
-	sudo apt install -y libopenexr-dev libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
-	git clone https://github.com/opencv/opencv.git
-	git clone https://github.com/opencv/opencv_contrib.git
-	cd opencv && git checkout 4.11.0
-	cd ../opencv_contrib && git checkout 4.11.0
-	cd ..
-	mkdir -p opencv/build
-	cd opencv/build
-	cmake -D CMAKE_BUILD_TYPE=Release \
-	      -D CMAKE_INSTALL_PREFIX=/usr/local \
-	      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-	      -D OPENCV_ENABLE_NONFREE=ON \
-	      -D BUILD_EXAMPLES=ON ..
-	make -j$(nproc)
-	sudo make install
-	pkg-config --modversion opencv4
+	sudo apt-get install python3-opencv
 
 install-system-deps: install-opencv
 
