@@ -9,9 +9,9 @@ permissions:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     container:
-      image: opencv/opencv:latest
-
+        image: opencv/opencv:latest
     steps:
     - uses: actions/checkout@v4
 
