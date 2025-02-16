@@ -10,8 +10,9 @@ all: install test
 # Install system dependencies
 
 install-system-deps:
-	pkg-config --modversion opencv4
+	sudo apt update
 	apt install git
+	pkg-config --modversion opencv4
 
 
 # Install Python dependencies
