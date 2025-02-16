@@ -30,6 +30,9 @@ jobs:
     - name: Install Python dependencies
       run: make install-python-deps
 
+    - name: Install system deps
+      run: make install-system-deps
+
     - name: Lint with flake8
       run: make lint
 

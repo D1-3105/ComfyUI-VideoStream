@@ -9,11 +9,9 @@ all: install test
 
 # Install system dependencies
 
-install-opencv:
+install-system-deps:
 	pkg-config --modversion opencv4
 	apt install git
-
-install-system-deps: install-opencv
 
 
 # Install Python dependencies
