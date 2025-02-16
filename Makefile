@@ -11,7 +11,7 @@ all: install test
 
 # Install system dependencies
 install-system-deps:
-	sudo add-apt-repository ppa:opencv/opencv-4.x -y
+	sudo add-apt-repository ppa:opencv/opencv-4.11 -y
 	sudo apt-get update
 	sudo apt-get install -y \
 		pkg-config \
