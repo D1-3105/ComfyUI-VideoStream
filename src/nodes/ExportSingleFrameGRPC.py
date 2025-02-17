@@ -4,7 +4,9 @@ import os
 import time
 
 import grpc
+import numpy as np
 import torch
+import cv2
 import torch.nn.functional as F
 
 from src.grpc_client import InputStreamShard_pb2
@@ -78,16 +80,19 @@ class ExportSingleFrameGRPC:
         )
 
         # Convert back to (H, W, C) format (assuming batch size B=1)
-        frame_resized = frame_resized.permute(0, 2, 3, 1).squeeze(0)  # (H, W, C)
+        frame_resized: torch.Tensor = frame_resized.permute(0, 2, 3, 1).squeeze(0)  # (H, W, C)
+        frame_resized: np.ndarray = frame_resized.contiguous().numpy()
+        frame_resized_bgr = cv2.cvtColor(frame_resized, cv2.COLOR_RGB2BGR)
+        frame_resized_bgr = frame_resized_bgr.astype(np.uint8)
 
-        # Prepare NamedFrame with corrected dimensions
         nf = VideoRCV_pb2.NamedFrame(
             stream=stream_id,
             shard=InputStreamShard_pb2.StreamShard(
-                image_data=gzip.compress(frame_resized.numpy().tobytes()),
-                width=frame_resized.shape[1],  # Width from dimension 1
-                height=frame_resized.shape[0],  # Height from dimension 0
+                image_data=gzip.compress(frame_resized_bgr.tobytes()),
+                width=frame_resized.shape[1],
+                height=frame_resized.shape[0],
                 fps=stream_params.fps,
+                matType=int(cv2.CV_8UC3),
                 gzipped=True
             )
         )

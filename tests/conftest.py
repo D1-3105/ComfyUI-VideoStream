@@ -50,7 +50,7 @@ def launch_FloWWeaver_grpc(git_pull_FloWWeaver):  # noqa
             stderr=subprocess.PIPE,
         )
 
-        time.sleep(2)
+        time.sleep(4)
         try:
             assert is_port_listening(50051)
             yield
