@@ -26,6 +26,7 @@ pytest==8.3.4
 requests==2.32.3
 sympy==1.13.1
 tomli==2.2.1
-torch==2.6.0+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
 typing_extensions==4.12.2
 urllib3==2.3.0
